@@ -28,7 +28,7 @@ public class EventHandlers
             var expires = now.AddSeconds(ev.Duration);
             var duration = expires - now;
             Types.V2Log log = Main.Instance.Config.BanLog;
-            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", ((DateTimeOffset)expires).ToUnixTimeSeconds().ToString());
+            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", $"<t:{((DateTimeOffset)expires).ToUnixTimeSeconds()}:R>");
             _ = SendCompV2Log(log, Main.Instance.Config.BanLogChannel);
             log = Main.Instance.Config.ForAdminBanLog;
             log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{adminid}", ev.Issuer.UserId).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", $"<t:{((DateTimeOffset)expires).ToUnixTimeSeconds()}:R>");
