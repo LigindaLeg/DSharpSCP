@@ -96,4 +96,4 @@ LabApi/
 
 ## 📄 License
 
-[MIT License](https://opensource.org/licenses/MIT)
+[CC0 LICENSE](LICENSE)
