@@ -56,14 +56,14 @@ public class EventHandlers
         {
             if (ev.Attacker == null || ev.Player == null || ev.Player.IsNpc || ev.Player.IsHost || ev.Attacker.IsNpc || ev.Attacker.IsHost)
                 return;
-            _ = SendLog(Main.Instance.Config.JoinedLog.Replace("{player}", ev.Attacker.Nickname).Replace("{playerid}", ev.Attacker.UserId).Replace("{target}", ev.Player.Nickname).Replace("{targetid}", ev.Player.UserId).Replace("{reason}", ev.DamageHandler.DeathScreenText), Main.Instance.Config.KillLogChannel);
+            _ = SendLog(Main.Instance.Config.KillLog.Replace("{player}", ev.Attacker.Nickname).Replace("{playerid}", ev.Attacker.UserId).Replace("{target}", ev.Player.Nickname).Replace("{targetid}", ev.Player.UserId).Replace("{reason}", ev.DamageHandler.DeathScreenText), Main.Instance.Config.KillLogChannel);
         }
 
         public static void Cuffed(PlayerCuffedEventArgs ev)
         {
             if (ev.Target == null || ev.Player == null || ev.Player.IsNpc || ev.Player.IsHost || ev.Target.IsNpc || ev.Target.IsHost)
                 return;
-            _ = SendLog(Main.Instance.Config.JoinedLog.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{target}", ev.Target.Nickname).Replace("{targetid}", ev.Target.UserId), Main.Instance.Config.CuffLogChannel);
+            _ = SendLog(Main.Instance.Config.CuffLog.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{target}", ev.Target.Nickname).Replace("{targetid}", ev.Target.UserId), Main.Instance.Config.CuffLogChannel);
         }
 
         public static void ReportedPlayer(PlayerReportedPlayerEventArgs ev)
@@ -80,7 +80,7 @@ public class EventHandlers
         {
             if (ev.Attacker == null || ev.Player == null || ev.Player.IsNpc || ev.Player.IsHost || ev.Attacker.IsNpc || ev.Attacker.IsHost)
                 return;
-            _ = SendLog(Main.Instance.Config.JoinedLog.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{attacker}", ev.Attacker.Nickname).Replace("{attackerid}", ev.Attacker.UserId).Replace("{damage}", ((StandardDamageHandler)ev.DamageHandler).Damage.ToString()), Main.Instance.Config.HurtLogChannel);
+            _ = SendLog(Main.Instance.Config.HurtLog.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{attacker}", ev.Attacker.Nickname).Replace("{attackerid}", ev.Attacker.UserId).Replace("{damage}", ((StandardDamageHandler)ev.DamageHandler).Damage.ToString()), Main.Instance.Config.HurtLogChannel);
         }
 
         public static void ThrewProjectile(PlayerThrewProjectileEventArgs ev)
