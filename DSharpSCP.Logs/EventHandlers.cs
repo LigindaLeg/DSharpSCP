@@ -126,8 +126,7 @@ public class EventHandlers
     private static async Task SendLog(string log, ulong channelId)
     {
         if (channelId == 0) return;
-
-        // Ждем своей очереди, чтобы не спамить запросами одновременно
+        
         await LogLock.WaitAsync();
         try
         {
@@ -136,8 +135,7 @@ public class EventHandlers
             if (channel == null) return;
 
             string timestampedLog = DateTime.Now.ToString("[HH:mm:ss] ") + log;
-
-            // Проверяем, нужно ли создать новое сообщение или дополнить старое
+            
             bool hasLastMessage = Main.lastLogMessages.TryGetValue(channel, out var lastMsg);
             bool needsNewMessage = !hasLastMessage || lastMsg == null || (lastMsg.Content.Length + log.Length + 2) >= 2000;
 
@@ -148,7 +146,6 @@ public class EventHandlers
             }
             else
             {
-                // Пытаемся редактировать. Если сообщение удалили — создаем новое.
                 try 
                 {
                     await lastMsg.ModifyAsync(p => p.Content = lastMsg.Content + "\n" + timestampedLog);
@@ -166,7 +163,6 @@ public class EventHandlers
         }
         finally
         {
-            // Обязательно освобождаем блокировку
             LogLock.Release();
         }
     }
