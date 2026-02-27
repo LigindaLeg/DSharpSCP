@@ -1,6 +1,5 @@
 # DSharpSCP
 
-[![Version](https://img.shields.io/github/v/release/LigindaLeg/DSharpSCP?color=blue&label=version)](https://github.com/LigindaLeg/DSharpSCP/releases)  
 [![Downloads](https://img.shields.io/github/downloads/LigindaLeg/DSharpSCP/total?color=brightgreen&label=downloads)](https://github.com/LigindaLeg/DSharpSCP/releases)  
 [![Releases](https://img.shields.io/github/v/release/LigindaLeg/DSharpSCP?color=orange&label=GitHub+Releases)](https://github.com/LigindaLeg/DSharpSCP/releases)
 
