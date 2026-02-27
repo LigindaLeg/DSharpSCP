@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSharpSCP", "DSharpSCP.csproj", "{3ADA7EE6-A156-47B7-B7AC-93D79608FFF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSharpSCP.Status", "DSharpSCP.Status\DSharpSCP.Status.csproj", "{46D84173-FE67-48CC-A0D8-A0F49CFD9B02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSharpSCP.Logs", "DSharpSCP.Logs\DSharpSCP.Logs.csproj", "{4A1BE522-3DFD-4268-9C91-B816F79E8C7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ADA7EE6-A156-47B7-B7AC-93D79608FFF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ADA7EE6-A156-47B7-B7AC-93D79608FFF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ADA7EE6-A156-47B7-B7AC-93D79608FFF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ADA7EE6-A156-47B7-B7AC-93D79608FFF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46D84173-FE67-48CC-A0D8-A0F49CFD9B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46D84173-FE67-48CC-A0D8-A0F49CFD9B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46D84173-FE67-48CC-A0D8-A0F49CFD9B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46D84173-FE67-48CC-A0D8-A0F49CFD9B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1BE522-3DFD-4268-9C91-B816F79E8C7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1BE522-3DFD-4268-9C91-B816F79E8C7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1BE522-3DFD-4268-9C91-B816F79E8C7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1BE522-3DFD-4268-9C91-B816F79E8C7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
