@@ -1,8 +1,8 @@
 # DSharpSCP
 
-[![Version](https://img.shields.io/github/v/release/LigindaLeg/DSharpSCP?color=blue&label=version)](https://github.com/YourGitHubUsername/DSharpSCP/releases)  
-[![Downloads](https://img.shields.io/github/downloads/LigindaLeg/DSharpSCP/total?color=brightgreen&label=downloads)](https://github.com/YourGitHubUsername/DSharpSCP/releases)  
-[![Releases](https://img.shields.io/github/v/release/LigindaLeg/DSharpSCP?color=orange&label=GitHub+Releases)](https://github.com/YourGitHubUsername/DSharpSCP/releases)
+[![Version](https://img.shields.io/github/v/release/LigindaLeg/DSharpSCP?color=blue&label=version)](https://github.com/LigindaLeg/DSharpSCP/releases)  
+[![Downloads](https://img.shields.io/github/downloads/LigindaLeg/DSharpSCP/total?color=brightgreen&label=downloads)](https://github.com/LigindaLeg/DSharpSCP/releases)  
+[![Releases](https://img.shields.io/github/v/release/LigindaLeg/DSharpSCP?color=orange&label=GitHub+Releases)](https://github.com/LigindaLeg/DSharpSCP/releases)
 
 **DSharpSCP** — Discord bot integration plugin for **SCP: Secret Laboratory** using LabAPI. The bot starts automatically alongside the plugin and allows logging, status updates, and modular features for your server.
 
