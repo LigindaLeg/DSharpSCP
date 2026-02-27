@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{4A1BE522-3DFD-4268-9C91-B816F79E8C7E}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>DSharpSCP.Logs</RootNamespace>
+        <AssemblyName>DSharpSCP.Logs</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>embedded</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony">
+          <HintPath>D:\My Plugins Dep\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+          <HintPath>D:\My Plugins Dep\Assembly-CSharp-publicized.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+          <HintPath>D:\My Plugins Dep\Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="AudioPlayerApi">
+          <HintPath>D:\My Plugins Dep\AudioPlayerApi.dll</HintPath>
+        </Reference>
+        <Reference Include="BouncyCastle.Cryptography">
+          <HintPath>D:\My Plugins Dep\BouncyCastle.Cryptography.dll</HintPath>
+        </Reference>
+        <Reference Include="Caress">
+          <HintPath>D:\My Plugins Dep\Caress.dll</HintPath>
+        </Reference>
+        <Reference Include="CommandSystem.Core">
+          <HintPath>D:\My Plugins Dep\CommandSystem.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="CustomPasses">
+          <HintPath>D:\My Plugins Dep\CustomPasses.dll</HintPath>
+        </Reference>
+        <Reference Include="Discord.Net.Commands, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Discord.Net.Commands.3.18.0\lib\net461\Discord.Net.Commands.dll</HintPath>
+        </Reference>
+        <Reference Include="Discord.Net.Core, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Discord.Net.Core.3.18.0\lib\net461\Discord.Net.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Discord.Net.Interactions, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Discord.Net.Interactions.3.18.0\lib\net461\Discord.Net.Interactions.dll</HintPath>
+        </Reference>
+        <Reference Include="Discord.Net.Rest, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Discord.Net.Rest.3.18.0\lib\net461\Discord.Net.Rest.dll</HintPath>
+        </Reference>
+        <Reference Include="Discord.Net.Webhook, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Discord.Net.Webhook.3.18.0\lib\netstandard2.0\Discord.Net.Webhook.dll</HintPath>
+        </Reference>
+        <Reference Include="Discord.Net.WebSocket, Version=3.18.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Discord.Net.WebSocket.3.18.0\lib\net461\Discord.Net.WebSocket.dll</HintPath>
+        </Reference>
+        <Reference Include="DnsClient">
+          <HintPath>D:\My Plugins Dep\DnsClient.dll</HintPath>
+        </Reference>
+        <Reference Include="DSharpSCP">
+          <HintPath>D:\My Plugins Dep\DSharpSCP.dll</HintPath>
+        </Reference>
+        <Reference Include="Facepunch.Steamworks.Posix">
+          <HintPath>D:\My Plugins Dep\Facepunch.Steamworks.Posix.dll</HintPath>
+        </Reference>
+        <Reference Include="HintServiceMeow">
+          <HintPath>D:\My Plugins Dep\HintServiceMeow-LabAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="Interop">
+          <HintPath>D:\My Plugins Dep\Interop.dll</HintPath>
+        </Reference>
+        <Reference Include="LabApi">
+          <HintPath>D:\My Plugins Dep\LabApi.dll</HintPath>
+        </Reference>
+        <Reference Include="Ligindary-LabAPI">
+          <HintPath>D:\My Plugins Dep\Ligindary-LabAPI.dll</HintPath>
+        </Reference>
+        <Reference Include="LiteDB">
+          <HintPath>D:\My Plugins Dep\LiteDB.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="Mirror">
+          <HintPath>D:\My Plugins Dep\Mirror_publicized.dll</HintPath>
+        </Reference>
+        <Reference Include="Mirror.Components">
+          <HintPath>D:\My Plugins Dep\Mirror.Components.dll</HintPath>
+        </Reference>
+        <Reference Include="Mono.Posix">
+          <HintPath>D:\My Plugins Dep\Mono.Posix.dll</HintPath>
+        </Reference>
+        <Reference Include="Mono.Security">
+          <HintPath>D:\My Plugins Dep\Mono.Security.dll</HintPath>
+        </Reference>
+        <Reference Include="mscorlib">
+          <HintPath>D:\My Plugins Dep\mscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="netstandard">
+          <HintPath>D:\My Plugins Dep\netstandard.dll</HintPath>
+        </Reference>
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="NorthwoodLib">
+          <HintPath>D:\My Plugins Dep\NorthwoodLib.dll</HintPath>
+        </Reference>
+        <Reference Include="NVorbis">
+          <HintPath>D:\My Plugins Dep\NVorbis.dll</HintPath>
+        </Reference>
+        <Reference Include="Pooling">
+          <HintPath>D:\My Plugins Dep\Pooling.dll</HintPath>
+        </Reference>
+        <Reference Include="ProjectMER">
+          <HintPath>D:\My Plugins Dep\ProjectMER.dll</HintPath>
+        </Reference>
+        <Reference Include="SemanticVersioning">
+          <HintPath>D:\My Plugins Dep\SemanticVersioning.dll</HintPath>
+        </Reference>
+        <Reference Include="SharpCompress">
+          <HintPath>D:\My Plugins Dep\SharpCompress.dll</HintPath>
+        </Reference>
+        <Reference Include="Snake">
+          <HintPath>D:\My Plugins Dep\Snake.dll</HintPath>
+        </Reference>
+        <Reference Include="System"/>
+        <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.Composition">
+          <HintPath>D:\My Plugins Dep\System.ComponentModel.Composition.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.DataAnnotations">
+          <HintPath>D:\My Plugins Dep\System.ComponentModel.DataAnnotations.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Configuration">
+          <HintPath>D:\My Plugins Dep\System.Configuration.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Data.DataSetExtensions">
+          <HintPath>D:\My Plugins Dep\System.Data.DataSetExtensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Drawing">
+          <HintPath>D:\My Plugins Dep\System.Drawing.dll</HintPath>
+        </Reference>
+        <Reference Include="System.EnterpriseServices">
+          <HintPath>D:\My Plugins Dep\System.EnterpriseServices.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Interactive.Async, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Interactive.Async.6.0.1\lib\net48\System.Interactive.Async.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Compression">
+          <HintPath>D:\My Plugins Dep\System.IO.Compression.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Compression.FileSystem">
+          <HintPath>D:\My Plugins Dep\System.IO.Compression.FileSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Pipelines">
+          <HintPath>D:\My Plugins Dep\System.IO.Pipelines.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Linq.Async, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Linq.Async.6.0.1\lib\net48\System.Linq.Async.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Http">
+          <HintPath>D:\My Plugins Dep\System.Net.Http.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics">
+          <HintPath>D:\My Plugins Dep\System.Numerics.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Reactive, Version=6.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Reactive.6.0.1\lib\net472\System.Reactive.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime">
+          <HintPath>D:\My Plugins Dep\System.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Serialization">
+          <HintPath>D:\My Plugins Dep\System.Runtime.Serialization.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security">
+          <HintPath>D:\My Plugins Dep\System.Security.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceModel.Internals">
+          <HintPath>D:\My Plugins Dep\System.ServiceModel.Internals.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.Encodings.Web">
+          <HintPath>D:\My Plugins Dep\System.Text.Encodings.Web.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Text.Json">
+          <HintPath>D:\My Plugins Dep\System.Text.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Transactions">
+          <HintPath>D:\My Plugins Dep\System.Transactions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Windows" />
+        <Reference Include="System.Windows.Forms" />
+        <Reference Include="System.Xml"/>
+        <Reference Include="System.Xml.Linq">
+          <HintPath>D:\My Plugins Dep\System.Xml.Linq.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Burst">
+          <HintPath>D:\My Plugins Dep\Unity.Burst.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Burst.Unsafe">
+          <HintPath>D:\My Plugins Dep\Unity.Burst.Unsafe.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Collections">
+          <HintPath>D:\My Plugins Dep\Unity.Collections.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Collections.LowLevel.ILSupport">
+          <HintPath>D:\My Plugins Dep\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Mathematics">
+          <HintPath>D:\My Plugins Dep\Unity.Mathematics.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ProBuilder">
+          <HintPath>D:\My Plugins Dep\Unity.ProBuilder.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ProBuilder.Csg">
+          <HintPath>D:\My Plugins Dep\Unity.ProBuilder.Csg.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ProBuilder.KdTree">
+          <HintPath>D:\My Plugins Dep\Unity.ProBuilder.KdTree.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ProBuilder.Poly2Tri">
+          <HintPath>D:\My Plugins Dep\Unity.ProBuilder.Poly2Tri.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ProBuilder.Stl">
+          <HintPath>D:\My Plugins Dep\Unity.ProBuilder.Stl.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Rendering.LightTransport.Runtime">
+          <HintPath>D:\My Plugins Dep\Unity.Rendering.LightTransport.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.Core.Runtime">
+          <HintPath>D:\My Plugins Dep\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
+          <HintPath>D:\My Plugins Dep\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+          <HintPath>D:\My Plugins Dep\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
+          <HintPath>D:\My Plugins Dep\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
+          <HintPath>D:\My Plugins Dep\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+          <HintPath>D:\My Plugins Dep\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+          <HintPath>D:\My Plugins Dep\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+          <HintPath>D:\My Plugins Dep\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.VisualEffectGraph.Runtime">
+          <HintPath>D:\My Plugins Dep\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+          <HintPath>D:\My Plugins Dep\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AccessibilityModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.AccessibilityModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AIModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.AIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AndroidJNIModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.AndroidJNIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AssetBundleModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.AssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClothModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.ClothModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClusterInputModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.ClusterInputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClusterRendererModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.ClusterRendererModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ContentLoadModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.ContentLoadModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CrashReportingModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.CrashReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DirectorModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.DirectorModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DSPGraphModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.DSPGraphModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GameCenterModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.GameCenterModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GIModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.GIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GraphicsStateCollectionSerializerModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.GraphicsStateCollectionSerializerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GridModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.GridModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.HierarchyCoreModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.HierarchyCoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.HotReloadModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.HotReloadModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.ImageConversionModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputForUIModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.InputForUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.InputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.JSONSerializeModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.JSONSerializeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.LocalizationModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.LocalizationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.MarshallingModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.MarshallingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.MultiplayerModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.MultiplayerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PerformanceReportingModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.PerformanceReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PropertiesModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.PropertiesModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ScreenCaptureModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ShaderVariantAnalyticsModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.ShaderVariantAnalyticsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SharedInternalsModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.SharedInternalsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteMaskModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.SpriteMaskModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteShapeModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.SpriteShapeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.StreamingModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.StreamingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SubstanceModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.SubstanceModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SubsystemsModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.SubsystemsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.TerrainModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainPhysicsModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreFontEngineModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreTextEngineModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TilemapModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.TilemapModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TLSModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.TLSModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UIElementsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UmbraModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UmbraModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityConnectModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityConnectModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityCurlModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityCurlModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityTestProtocolModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VehiclesModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.VehiclesModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VFXModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.VFXModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VideoModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.VideoModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VirtualTexturingModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.VirtualTexturingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VRModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.VRModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.WindModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.WindModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.XRModule">
+          <HintPath>D:\My Plugins Dep\UnityEngine.XRModule.dll</HintPath>
+        </Reference>
+        <Reference Include="WindowsBase" />
+        <Reference Include="YamlDotNet">
+          <HintPath>D:\My Plugins Dep\YamlDotNet.dll</HintPath>
+        </Reference>
+        <Reference Include="zxing">
+          <HintPath>D:\My Plugins Dep\zxing.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="EventHandlers.cs" />
+        <Compile Include="Main.cs" />
+        <Compile Include="Config.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Types.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="App.config" />
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
