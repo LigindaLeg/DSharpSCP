@@ -104,7 +104,7 @@ public class EventHandlers
         {
             if (Player.Get(ev.Sender) == null || Player.Get(ev.Sender).IsNpc|| Player.Get(ev.Sender).IsHost)
                 return;
-            _ = SendLog(Main.Instance.Config.CommandLog.Replace("{player}", Player.Get(ev.Sender).Nickname).Replace("{playerid}", Player.Get(ev.Sender).UserId).Replace("{command}", " " + ev.Command.Command  + string.Join(" ", ev.Arguments.Array, ev.Arguments.Offset, ev.Arguments.Count)), Main.Instance.Config.CommandLogChannel);
+            _ = SendLog(Main.Instance.Config.CommandLog.Replace("{player}", Player.Get(ev.Sender).Nickname).Replace("{playerid}", Player.Get(ev.Sender).UserId).Replace("{command}", ev.Command.Command + " " + string.Join(" ", ev.Arguments.Array, ev.Arguments.Offset, ev.Arguments.Count)), Main.Instance.Config.CommandLogChannel);
         }
 
         public static void RoundStarted()
