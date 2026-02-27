@@ -31,7 +31,7 @@ public class EventHandlers
             log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", ((DateTimeOffset)expires).ToUnixTimeSeconds().ToString());
             _ = SendCompV2Log(log, Main.Instance.Config.BanLogChannel);
             log = Main.Instance.Config.ForAdminBanLog;
-            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{adminid}", ev.Issuer.UserId).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", ((DateTimeOffset)expires).ToUnixTimeSeconds().ToString());
+            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{adminid}", ev.Issuer.UserId).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", $"<t:{((DateTimeOffset)expires).ToUnixTimeSeconds()}:R>");
             _ = SendCompV2Log(log, Main.Instance.Config.ForAdminBanLogChannel);
         }
 
@@ -104,7 +104,7 @@ public class EventHandlers
         {
             if (Player.Get(ev.Sender) == null || Player.Get(ev.Sender).IsNpc|| Player.Get(ev.Sender).IsHost)
                 return;
-            _ = SendLog(Main.Instance.Config.CommandLog.Replace("{player}", Player.Get(ev.Sender).Nickname).Replace("{playerid}", Player.Get(ev.Sender).UserId).Replace("{command}", ev.Command.Command + " " + string.Join(" ", ev.Arguments.Array, ev.Arguments.Offset, ev.Arguments.Count)), Main.Instance.Config.CommandLogChannel);
+            _ = SendLog(Main.Instance.Config.CommandLog.Replace("{player}", Player.Get(ev.Sender).Nickname).Replace("{playerid}", Player.Get(ev.Sender).UserId).Replace("{command}", ev.Command.Command + " " +  string.Join(" ", ev.Arguments.Array, ev.Arguments.Offset, ev.Arguments.Count)), Main.Instance.Config.CommandLogChannel);
         }
 
         public static void RoundStarted()
