@@ -13,7 +13,7 @@ public class Main : Plugin<Config>
     public override void Enable()
     {
         Instance = this;
-        _ = Task.Run(StartBotAsync); // НЕ блокируем главный поток
+        _ = Task.Run(StartBotAsync);
         DefaultGuild = Config.DiscordGuildID;
     }
 
@@ -84,4 +84,5 @@ public class Main : Plugin<Config>
         Logger.Info($"Бот запущен как {Client.CurrentUser}");
         return Task.CompletedTask;
     }
+
 }
