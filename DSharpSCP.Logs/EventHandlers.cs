@@ -27,11 +27,19 @@ public class EventHandlers
             var now = DateTime.Now;
             var expires = now.AddSeconds(ev.Duration);
             var duration = expires - now;
-            Types.V2Log log = Main.Instance.Config.BanLog;
-            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", $"<t:{((DateTimeOffset)expires).ToUnixTimeSeconds()}:R>");
+            Types.V2Log log = new()
+            {
+                Header = Main.Instance.Config.BanLog.Header,
+                Separator = Main.Instance.Config.BanLog.Separator,
+                Log = Main.Instance.Config.BanLog.Log.Replace("{player}", ev.Player.Nickname).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", $"<t:{((DateTimeOffset)expires).ToUnixTimeSeconds()}:R>")
+            };
             _ = SendCompV2Log(log, Main.Instance.Config.BanLogChannel);
-            log = Main.Instance.Config.ForAdminBanLog;
-            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{adminid}", ev.Issuer.UserId).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", $"<t:{((DateTimeOffset)expires).ToUnixTimeSeconds()}:R>");
+            log = new()
+            {
+                Header = Main.Instance.Config.ForAdminBanLog.Header,
+                Separator = Main.Instance.Config.ForAdminBanLog.Separator,
+                Log = Main.Instance.Config.ForAdminBanLog.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{reason}", ev.Reason).Replace("{admin}", ev.Issuer.Nickname).Replace("{adminid}", ev.Issuer.UserId).Replace("{durationDays}", duration.Days.ToString()).Replace("{durationHours}", duration.Hours.ToString()).Replace("{durationMinutes}", duration.Minutes.ToString()).Replace("{expires}", $"<t:{((DateTimeOffset)expires).ToUnixTimeSeconds()}:R>")
+            };
             _ = SendCompV2Log(log, Main.Instance.Config.ForAdminBanLogChannel);
         }
 
@@ -44,11 +52,19 @@ public class EventHandlers
 
         public static void Muted(PlayerMutedEventArgs ev)
         {
-            Types.V2Log log = Main.Instance.Config.MuteLog;
-            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{admin}", ev.Issuer.Nickname);
+            Types.V2Log log = new()
+            {
+                Header = Main.Instance.Config.MuteLog.Header,
+                Separator = Main.Instance.Config.MuteLog.Separator,
+                Log = Main.Instance.Config.MuteLog.Log.Replace("{player}", ev.Player.Nickname).Replace("{admin}", ev.Issuer.Nickname)
+            };
             _ = SendCompV2Log(log, Main.Instance.Config.MuteLogChannel);
-            log = Main.Instance.Config.ForAdminMuteLog;
-            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{admin}", ev.Issuer.Nickname).Replace("{adminid}", ev.Issuer.UserId);
+            log = new()
+            {
+                Header = Main.Instance.Config.ForAdminMuteLog.Header,
+                Separator = Main.Instance.Config.ForAdminMuteLog.Separator,
+                Log = Main.Instance.Config.ForAdminMuteLog.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{admin}", ev.Issuer.Nickname).Replace("{adminid}", ev.Issuer.UserId)
+            };
             _ = SendCompV2Log(log, Main.Instance.Config.ForAdminMuteLogChannel);
         }
 
@@ -68,11 +84,19 @@ public class EventHandlers
 
         public static void ReportedPlayer(PlayerReportedPlayerEventArgs ev)
         {
-            Types.V2Log log = Main.Instance.Config.ReportLog;
-            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{target}", ev.Target.Nickname).Replace("{reason}", ev.Reason);
+            Types.V2Log log = new()
+            {
+                Header = Main.Instance.Config.ReportLog.Header,
+                Separator = Main.Instance.Config.ReportLog.Separator,
+                Log = Main.Instance.Config.ReportLog.Log.Replace("{player}", ev.Player.Nickname).Replace("{target}", ev.Target.Nickname).Replace("{reason}", ev.Reason),
+            };
             _ = SendCompV2Log(log, Main.Instance.Config.ReportLogChannel);
-            log = Main.Instance.Config.ForAdminReportLog;
-            log.Log = log.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{target}", ev.Target.Nickname).Replace("{targetid}", ev.Target.UserId).Replace("{reason}", ev.Reason);
+            log = new()
+            {
+                Header = Main.Instance.Config.ForAdminReportLog.Header,
+                Separator = Main.Instance.Config.ForAdminReportLog.Separator,
+                Log = Main.Instance.Config.ForAdminReportLog.Log.Replace("{player}", ev.Player.Nickname).Replace("{playerid}", ev.Player.UserId).Replace("{target}", ev.Target.Nickname).Replace("{targetid}", ev.Target.UserId).Replace("{reason}", ev.Reason),
+            };
             _ = SendCompV2Log(log, Main.Instance.Config.ForAdminReportLogChannel);
         }
 
@@ -130,6 +154,12 @@ public class EventHandlers
         await LogLock.WaitAsync();
         try
         {
+            if (DSharpSCP.Main.Instance.Client == null)
+            {
+                Logger.Error("Bot don't started yet!");
+                return;
+            }
+            Logger.Debug($"Guild Id: {DSharpSCP.Main.Instance.DefaultGuild}");
             var guild = DSharpSCP.Main.Instance.Client.GetGuild(DSharpSCP.Main.Instance.DefaultGuild);
             var channel = guild?.GetTextChannel(channelId);
             if (channel == null) return;
@@ -141,25 +171,25 @@ public class EventHandlers
 
             if (needsNewMessage)
             {
-                var sentMsg = await channel.SendMessageAsync(timestampedLog);
+                var sentMsg = await channel.SendMessageAsync(timestampedLog.Replace("@everyone", "`everyone`").Replace("@here", "`here`"));
                 Main.lastLogMessages[channel] = sentMsg;
             }
             else
             {
                 try 
                 {
-                    await lastMsg.ModifyAsync(p => p.Content = lastMsg.Content + "\n" + timestampedLog);
+                    await lastMsg.ModifyAsync(p => p.Content = lastMsg.Content + "\n" + timestampedLog.Replace("@everyone", "`everyone`").Replace("@here", "`here`"));
                 }
                 catch
                 {
-                    var sentMsg = await channel.SendMessageAsync(timestampedLog);
+                    var sentMsg = await channel.SendMessageAsync(timestampedLog.Replace("@everyone", "`everyone`").Replace("@here", "`here`"));
                     Main.lastLogMessages[channel] = sentMsg;
                 }
             }
         }
         catch (Exception ex)
         {
-            Logger.Error($"[Discord Log Error]: {ex.Message}");
+            Logger.Error($"[Discord Log Error]: {ex}");
         }
         finally
         {
@@ -168,7 +198,7 @@ public class EventHandlers
     }
 
     
-    private static async Task SendCompV2Log(Types.V2Log log, ulong  channelId)
+    private static async Task SendCompV2Log(Types.V2Log log, ulong channelId)
     {
         if (channelId == 0)
         {
@@ -183,7 +213,7 @@ public class EventHandlers
                     .WithTextDisplay($"{log.Header}")
                     .WithSeparator(SeparatorSpacingSize.Small)
                     .WithTextDisplay(
-                        $"{log.Log}"
+                        $"{log.Log.Replace("@everyone", "`@everyone`").Replace("@here", "`@here`")}"
                     )
                 )
                 .Build();
@@ -194,7 +224,7 @@ public class EventHandlers
                 .WithContainer(container => container
                     .WithTextDisplay($"{log.Header}")
                     .WithTextDisplay(
-                        $"{log.Log}"
+                        $"{log.Log.Replace("@everyone", "`@everyone`").Replace("@here", "`@here`")}"
                     )
                 )
                 .Build();
@@ -203,17 +233,9 @@ public class EventHandlers
         {
             await channel.SendMessageAsync(components: components);
         }
-        catch 
+        catch (Exception ex)
         {
-            await Task.Delay(1000);
-            try
-            {
-                await channel.SendMessageAsync(components: components);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error($"Discord send log failed: {ex}");
-            }
+            Logger.Error($"Discord send log failed: {ex}");
         }
     }
 }

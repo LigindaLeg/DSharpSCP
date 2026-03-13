@@ -6,14 +6,14 @@ namespace DSharpSCP.Logs
     {
         [Description("Joined Log Text")] public string JoinedLog { get; set; } = "Player {player} ({steamid}) joined the server";
         [Description("Left Log Text")] public string LeftLog { get; set; } = "Player {player} ({steamid}) left the server";
-        [Description("Ban Log Message")] public Types.BanLog BanLog { get; set; } = new();
-        [Description("For Admin (with SteamID) Ban Log Message")] public Types.ForAdminBanLog ForAdminBanLog { get; set; } = new();
-        [Description("Mute Log Message")] public Types.MuteLog MuteLog { get; set; } = new();
-        [Description("For Admin (with SteamID) Mute Log Message")] public Types.ForAdminMuteLog ForAdminMuteLog { get; set; } = new();
+        [Description("Ban Log Message")] public Types.V2Log BanLog { get; set; } = Types.LogTemplates.Ban();
+        [Description("For Admin (with SteamID) Ban Log Message")] public Types.V2Log ForAdminBanLog { get; set; } = Types.LogTemplates.AdminBan();
+        [Description("Mute Log Message")] public Types.V2Log MuteLog { get; set; } = Types.LogTemplates.Mute();
+        [Description("For Admin (with SteamID) Mute Log Message")] public Types.V2Log ForAdminMuteLog { get; set; } = Types.LogTemplates.AdminMute();
         [Description("Kill Log Text")] public string KillLog { get; set; } = "Player {player} ({playerid}) killled player {target} ({targetid}) with {reason}";
         [Description("Cuff Log Text")] public string CuffLog { get; set; } = "Player {target} ({targetid}) has been cuffed by {player} ({playerid})";
-        [Description("Report Log Message")] public Types.ReportLog ReportLog { get; set; } = new();
-        [Description("For Admin (with SteamID) Report Log Message")] public Types.ForAdminReportLog ForAdminReportLog { get; set; } = new();
+        [Description("Report Log Message")] public Types.V2Log ReportLog { get; set; } = Types.LogTemplates.Report();
+        [Description("For Admin (with SteamID) Report Log Message")] public Types.V2Log ForAdminReportLog { get; set; } = Types.LogTemplates.AdminReport();
         [Description("Command Log Text")] public string CommandLog { get; set; } = "Player {player} ({playerid}) issued command `{command}`";
         [Description("Round Started Log Text")] public string RoundStartedLog { get; set; } = "Round Started!";
         [Description("Round Ended Log Text")] public string RoundEndedLog { get; set; } = "Round Ended!";
