@@ -1,99 +1,173 @@
-# DSharpSCP
-
 [![Downloads](https://img.shields.io/github/downloads/LigindaLeg/DSharpSCP/total?color=brightgreen&label=downloads)](https://github.com/LigindaLeg/DSharpSCP/releases)  
 [![Releases](https://img.shields.io/github/v/release/LigindaLeg/DSharpSCP?color=orange&label=GitHub+Releases)](https://github.com/LigindaLeg/DSharpSCP/releases)
 
-**DSharpSCP** — Discord bot integration plugin for **SCP: Secret Laboratory** using LabAPI. The bot starts automatically alongside the plugin and allows logging, status updates, and modular features for your server.
+# DSharpSCP
 
----
+A modular Discord integration suite for **SCP: Secret Laboratory** built on **LabAPI**.
 
-## 📦 Features
+`DSharpSCP` connects your server to Discord, `DSharpSCP.Logs` sends game events to Discord channels, and `DSharpSCP.Status` updates the bot presence based on the current server population.
 
-- Automatic Discord bot startup with the plugin  
-- Modular system: load additional modules from separate releases  
-- Configurable logging and status modules  
-- Supports Discord embed components for logs  
-- Works on Linux and Windows servers  
+## Features
 
----
+### Core module (`DSharpSCP`)
+- Starts and manages a Discord bot client
+- Connects using a bot token and a default guild ID
+- Supports debug logging
+- Provides the shared Discord client used by the other modules
 
-## ⚙ Installation
+### Logs module (`DSharpSCP.Logs`)
+Sends server activity to Discord channels, including:
+- player join / leave
+- bans
+- mutes
+- kills
+- cuffs
+- reports
+- remote admin commands
+- round start / end / restart
+- damage events
+- grenade throws
+- role changes
 
-### 1. Copy the plugin
+It also supports:
+- separate public and admin log formats for moderation events
+- configurable message templates
+- configurable channel IDs
+- Discord component-based log messages for richer moderation logs
 
-Place the main plugin file in:
-LabApi/plugins/(port/global)
+### Status module (`DSharpSCP.Status`)
+Updates the Discord bot status when players join or leave:
+- custom status when the server is empty
+- custom status when players are online
+- optional idle status while the server is empty
 
-### 2. Copy optional modules
+## Project structure
 
-Modules/releases also go into the same folder:
-LabApi/plugins/(port/global)
+```text
+DSharpSCP/
+├─ DSharpSCP/         # Core Discord bot module
+├─ DSharpSCP.Logs/    # Discord logging module
+└─ DSharpSCP.Status/  # Discord presence/status module
+```
 
-Modules include:
+## Requirements
 
-- `DSharpSCP.Status` → manages player count server status updates  
-- `DSharpSCP.Logs` → handles event logging to Discord  
+- **SCP: Secret Laboratory** dedicated server
+- **LabAPI**
+- **.NET Framework 4.8**
+- A **Discord bot token**
+- Your **Discord server (guild) ID**
+- Proper bot permissions for the channels you want to use
 
----
+## Installation
 
-### 3. Dependencies
+1. Build the projects.
+2. Put the compiled DLLs into your server's plugin directory.
+3. Make sure the core module is loaded:
+   - `DSharpSCP`
+4. Add optional modules as needed:
+   - `DSharpSCP.Logs`
+   - `DSharpSCP.Status`
+5. Start the server and configure the generated config files.
 
-Unpack `dependencies.zip` to:
-LabApi/dependencies/(port/global)
+## Configuration
 
-This ensures the bot has all required DLLs to run.
+### Core config (`DSharpSCP`)
+```yaml
+discord_bot_token: "your-bot-token"
+discord_guild_id: 123456789012345678
+debug: false
+```
 
----
+### Status config (`DSharpSCP.Status`)
+```yaml
+empty_status: "Nobody on server!"
+server_status: "{players}/{max} on server."
+idle: true
+debug: false
+```
 
-## 🛠 Configuration
+### Logs config (`DSharpSCP.Logs`)
+Every log type has:
+- a message template
+- a Discord channel ID
 
-The main plugin config is located at:
-LabApi/configs/(port)/DSharpSCP
+Set a channel ID to `0` to disable that log.
 
-Module configs:
-LabApi/configs/(port)/DSharpSCP.Status
-LabApi/configs/(port)/DSharpSCP.Logs
+Example:
+```yaml
+joined_log: "Player {player} ({steamid}) joined the server"
+joined_log_channel_id: 123456789012345678
 
-Each config can be customized to set:
+left_log: "Player {player} ({steamid}) left the server"
+left_log_channel_id: 123456789012345678
 
-- Discord bot token  
-- Guild ID  
-- Channel IDs for logs  
-- Status settings  
+command_log: "Player {player} ({playerid}) issued command `{command}`"
+command_log_channel: 123456789012345678
+```
 
----
+Moderation logs use structured templates with:
+- `header`
+- `separator`
+- `log`
 
-## 🚀 Usage
+Example:
+```yaml
+ban_log:
+  header: "Player Banned!"
+  separator: true
+  log: "**Player:** {player}\n**Reason:** {reason}\n**Admin:** {admin}\n**Duration:** {durationDays} d. {durationHours} h. {durationMinutes} m.\n**Expires:** {expires}"
+```
 
-- The Discord bot starts automatically when the plugin is loaded.  
-- Logs and status updates are sent to Discord based on your configured channels.  
-- For stable operation on Linux, consider running the bot in a separate process if needed for large servers.  
+## Available placeholders
 
----
+Depending on the event, the following placeholders are used by the plugin:
 
-## 📂 Directory Structure
-LabApi/
-│
-├─ plugins/(port/global)/ <- Plugin and modules go here
-│ ├─ DSharpSCP.dll
-│ ├─ DSharpSCP.Status.dll
-│ └─ DSharpSCP.Logs.dll
-│
-├─ dependencies/(port/global)/ <- Extract dependencies.zip here
-│ └─ *.dll
-│
-└─ configs/(port)/ <- Plugin configs
+- `{player}`
+- `{playerid}`
+- `{steamid}`
+- `{target}`
+- `{targetid}`
+- `{admin}`
+- `{adminid}`
+- `{reason}`
+- `{command}`
+- `{damage}`
+- `{grenade}`
+- `{oldRole}`
+- `{newRole}`
+- `{durationDays}`
+- `{durationHours}`
+- `{durationMinutes}`
+- `{expires}`
+- `{players}`
+- `{max}`
 
----
+## How it works
 
-## 📌 Notes
+- The core module creates a shared `DiscordSocketClient`.
+- The logs module subscribes to LabAPI events and forwards them to Discord.
+- The status module updates the bot presence based on current online players.
+- The logs module can append plain text logs into the same Discord message until the message approaches Discord's length limit, reducing channel spam.
 
-- Modules are optional; the main bot plugin runs without them.  
-- Do not block the main server thread with long-running async operations — the plugin handles async tasks internally.  
-- Ensure your Discord bot token has the correct intents enabled (Message Content Intent, Server Members Intent if needed).  
+## Notes
 
----
+- `DSharpSCP.Logs` and `DSharpSCP.Status` depend on the core `DSharpSCP` module.
+- The bot must have access to the configured guild and channels.
+- For moderation or command logs, make sure the bot has permission to send messages in the target channels.
+- Debug mode is useful during setup, but it is usually better to keep it disabled in production.
 
-## 📄 License
+## Example use cases
 
-[CC0 LICENSE](LICENSE)
+- Send join/leave logs to a public staff-log channel
+- Send bans, mutes, and reports to a private admin-log channel
+- Show live player count in the bot custom status
+- Track round flow and player activity directly from Discord
+
+## License
+
+Add your preferred license here.
+
+## Author
+
+**liginda**
