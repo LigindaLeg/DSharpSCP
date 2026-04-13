@@ -164,10 +164,6 @@ Depending on the event, the following placeholders are used by the plugin:
 - Show live player count in the bot custom status
 - Track round flow and player activity directly from Discord
 
-## License
-
-Add your preferred license here.
-
 ## Author
 
 **liginda**
