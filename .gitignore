@@ -1,55 +1,69 @@
-# Prerequisites
-*.d
+# Build
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+AnyCPU/
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+.vscode/
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
 
-# Precompiled Headers
-*.gch
-*.pch
+# NuGet
+*.nupkg
+packages/
+!packages/build/
+project.assets.json
+project.nuget.cache
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# Logs
+*.log
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# Test / coverage
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# Generated files
+Generated/
+Generated Files/
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Publish
+publish/
 
-# debug information files
-*.dwo
+# Temporary
+*.tmp
+*.temp
+*.cache
+
+# JetBrains
+_ReSharper*/
+*.DotSettings.user
+
+# Visual Studio profiler / diagnostics
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Local env / secrets
+.env
+.env.*
+appsettings.Development.json
+secrets.json
