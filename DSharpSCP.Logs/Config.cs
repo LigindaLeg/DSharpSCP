@@ -10,7 +10,7 @@ namespace DSharpSCP.Logs
         [Description("For Admin (with SteamID) Ban Log Message")] public Types.V2Log ForAdminBanLog { get; set; } = Types.LogTemplates.AdminBan();
         [Description("Mute Log Message")] public Types.V2Log MuteLog { get; set; } = Types.LogTemplates.Mute();
         [Description("For Admin (with SteamID) Mute Log Message")] public Types.V2Log ForAdminMuteLog { get; set; } = Types.LogTemplates.AdminMute();
-        [Description("Kill Log Text")] public string KillLog { get; set; } = "Player {player} ({playerid}) killled player {target} ({targetid}) with {reason}";
+        [Description("Kill Log Text")] public string KillLog { get; set; } = "Player {player} ({playerid}) killed player {target} ({targetid}) with {reason}";
         [Description("Cuff Log Text")] public string CuffLog { get; set; } = "Player {target} ({targetid}) has been cuffed by {player} ({playerid})";
         [Description("Report Log Message")] public Types.V2Log ReportLog { get; set; } = Types.LogTemplates.Report();
         [Description("For Admin (with SteamID) Report Log Message")] public Types.V2Log ForAdminReportLog { get; set; } = Types.LogTemplates.AdminReport();
@@ -21,9 +21,9 @@ namespace DSharpSCP.Logs
         [Description("Hurt Log Text")] public string HurtLog { get; set; } = "Player {attacker} ({attackerid}) hurt player {player} ({playerid}) with {damage}";
         [Description("Grenade Log Text")] public string GrenadeLog { get; set; } = "Player {player} ({playerid}) threw grenade {grenade}";
         [Description("Change Role Log Text")] public string ChangeRoleLog { get; set; } = "Player {player} ({playerid}) changed role from {oldRole} to {newRole}";
-        
-        [Description("Joined Log Channel Id")] public ulong JoinedLogChannelId {get; set;} = 0;
-        [Description("Left Log Channel Id")] public ulong LeftLogChannelId {get; set;} = 0;
+
+        [Description("Joined Log Channel Id")] public ulong JoinedLogChannelId { get; set; } = 0;
+        [Description("Left Log Channel Id")] public ulong LeftLogChannelId { get; set; } = 0;
         [Description("Ban Log Channel Id")] public ulong BanLogChannel { get; set; } = 0;
         [Description("For Admin Ban Log Channel Id")] public ulong ForAdminBanLogChannel { get; set; } = 0;
         [Description("Mute Log Channel Id")] public ulong MuteLogChannel { get; set; } = 0;

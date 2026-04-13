@@ -38,7 +38,7 @@
           <HintPath>D:\My Plugins Dep\0Harmony.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp">
-          <HintPath>D:\My Plugins Dep\Assembly-CSharp-publicized.dll</HintPath>
+          <HintPath>D:\My Plugins Dep\Assembly-CSharp_publicized.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
           <HintPath>D:\My Plugins Dep\Assembly-CSharp-firstpass.dll</HintPath>
